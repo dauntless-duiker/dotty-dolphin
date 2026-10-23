@@ -37,3 +37,17 @@ Requires `jq`.
 ```sh
 ln -s ~/dotty-dolphin/nvim ~/.config/nvim
 ```
+
+If `~/.config/nvim` already exists, move or back it up first, otherwise `ln` creates the link inside it.
+
+## Saving changes
+
+Because the live files are symlinks, editing `~/.tmux.conf`, `~/.claude/statusline-tmux.sh` or anything under `~/.config/nvim` changes this repo directly. Nothing is committed or pushed automatically:
+
+```sh
+git -C ~/dotty-dolphin add -A
+git -C ~/dotty-dolphin commit -m "Describe the change"
+git -C ~/dotty-dolphin push
+```
+
+lazy.nvim rewrites `nvim/lazy-lock.json` whenever plugins are installed or updated, so expect it to show up in `git status`. Commit it to keep plugin versions pinned across machines.
