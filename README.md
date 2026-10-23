@@ -1,6 +1,6 @@
 # dotty-dolphin
 
-Personal dotfiles.
+Personal dotfiles. The live config files are symlinks into this repo, so edits land here directly.
 
 ## tmux (`tmux/.tmux.conf`)
 
@@ -29,3 +29,11 @@ and in `~/.claude/settings.json`:
 ```
 
 Requires `jq`.
+
+## Neovim (`nvim/`)
+
+`init.lua` with lazy.nvim; `lazy-lock.json` pins plugin versions.
+
+```sh
+ln -s ~/dotty-dolphin/nvim ~/.config/nvim
+```
