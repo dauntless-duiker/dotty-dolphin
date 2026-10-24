@@ -14,6 +14,19 @@ vim.opt.termguicolors = true
 
 vim.keymap.set("n", "<leader>w", "<cmd>set wrap!<cr>", { desc = "Toggle word wrap" })
 
+-- Copy the current file's path to the system clipboard and show it
+local function copy_path(modifier)
+  return function()
+    local path = vim.fn.expand("%" .. modifier)
+    vim.fn.setreg("+", path)
+    vim.notify(path)
+  end
+end
+vim.keymap.set("n", "<leader>yp", copy_path(":."), { desc = "Copy relative path" })
+vim.keymap.set("n", "<leader>yP", copy_path(":p"), { desc = "Copy absolute path" })
+vim.keymap.set("n", "<leader>yd", copy_path(":p:h"), { desc = "Copy directory" })
+vim.keymap.set("n", "<leader>yf", copy_path(":t"), { desc = "Copy file name" })
+
 -- Strip trailing whitespace on save without moving the cursor or touching search history
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
